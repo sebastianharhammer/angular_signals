@@ -11,17 +11,18 @@
 }
 
 #number {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: white;
 }
 
-#btn {
+.btn {
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
   font-size: 1.1rem;
   font-weight: 600;
   padding: 12px 28px;
+  margin: 12px 28px;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -29,12 +30,12 @@
   transition: all 0.3s ease;
 }
 
-#btn:hover {
+.btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-#btn:active {
+.btn:active {
   transform: translateY(0);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
