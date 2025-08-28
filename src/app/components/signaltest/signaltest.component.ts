@@ -1,36 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { signal } from '@angular/core';
 
 @Component({
-  selector: 'app-counter',
-  template: `
-    <h1>{{ counter() }}</h1>
-    <button (click)="increment()">Increment</button>
-  `
+  selector: 'app-signaltest',
+  imports: [],
+  templateUrl: './signaltest.component.html',
+  styleUrl: './signaltest.component.scss',
+  standalone: true
 })
-export class CounterComponent {
-  counter = signal(0);
-
-  increment() {
-    this.counter.update(v => v + 1);
+export class SignaltestComponent {
+  count = signal(0);
+  countArr = [];
+  
+  calculate() {
+    /* this.count.set(10); */
+    this.count.update(count => count + 1);
   }
 }
-
-
-/* import { signal } from '@angular/core';
-import { computed } from '@angular/core';
-import { effect } from '@angular/core';
-
-const counter = signal(0);  // initial value = 0
-
-counter();       // 0
-counter.set(10); // sets to 10
-counter.update(v => v + 1); // sets to 11
-
-const doubleCounter = computed(() => counter() * 2);
-
-
-effect(() => {
-  console.log('Counter is:', counter());
-});
-
- */
