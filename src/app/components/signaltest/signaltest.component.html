@@ -1,5 +1,16 @@
 <div id="background">
-    <span id="number">{{ count() }}</span>
-    <button class="btn" (click)="calculate()">calculate</button>
-    <button class="btn" (click)="reset()">reset</button>
+  <div class="numberContainer">
+    <span class="descriptionText">on click count:</span>
+    <span class="number">{{ count() }}</span>
+  </div>
+  <div class="numberContainer">
+    <span class="descriptionText">on hover count:</span>
+    <span class="number">{{ hoverCount() }}</span>
+  </div>
+  <div class="numberContainer">
+    <span class="descriptionText">multiplied:</span>
+    <span class="number">{{ multi() }}</span>
+  </div>
+  <button class="btn" (click)="calculate()" (mouseover)="calculateOnHover()">calculate</button>
+  <button class="btn" (click)="reset()">reset</button>
 </div>

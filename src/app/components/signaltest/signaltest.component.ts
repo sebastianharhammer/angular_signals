@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, computed} from '@angular/core';
 import { signal } from '@angular/core';
 
 @Component({
@@ -9,14 +9,22 @@ import { signal } from '@angular/core';
   standalone: true
 })
 export class SignaltestComponent {
-  count = signal(2);
-  countArr = [];
-  
+  count = signal(0);
+  hoverCount = signal(0);
+  multi = computed(() => this.count() * this.hoverCount());
+
   calculate() {
     /* this.count.set(10); */
-    this.count.update(count => count * count);
+    this.count.update(count => count += 1);
   }
+
+  calculateOnHover() {
+    this.hoverCount.update(hoverCount => hoverCount += 1)
+  }
+
   reset() {
-    this.count = signal(2);
+    this.count = signal(0);
+    this.hoverCount = signal(0);
+    this.multi = signal(0);
   }
 }
