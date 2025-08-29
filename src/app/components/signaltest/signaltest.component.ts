@@ -38,5 +38,6 @@ export class SignaltestComponent {
     this.count = signal(0);
     this.hoverCount = signal(0);
     this.multi = signal(0);
+    this.constructorCount.set(0)
   }
 }

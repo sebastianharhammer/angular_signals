@@ -1,54 +1,141 @@
-#background {
+/* Design tokens scoped to this component */
+:host {
+  --bg: #F4064C;
+  --text-on-bg: #ffffff;
+  --text-subtle: #f5f5f5;
+  --btn-grad-start: #6a11cb;
+  --btn-grad-end: #2575fc;
+  --btn-shadow: rgba(0, 0, 0, 0.25);
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+
+  /* The host becomes your #background container */
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
-  background-color: #F4064C;
-  width: 100vw;
-  height: 100vh;
-  margin: 0 auto;
+  flex-direction: column;
+  min-height: 100dvh;
+  width: 100%;
+  padding: var(--space-6) var(--space-4);
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(255, 255, 255, 0.15), transparent 60%),
+  radial-gradient(900px 500px at 0% 100%, rgba(0, 0, 0, 0.15), transparent 55%),
+  var(--bg);
   overflow-x: hidden;
+  text-align: center;
+  color: var(--text-on-bg);
+}
+
+/* Typography */
+h2 {
+  margin: 0 0 var(--space-3);
+  font-weight: 900;
+  font-size: clamp(2rem, 3.5vw + 1rem, 3.5rem);
+  letter-spacing: -0.02em;
+  color: var(--text-on-bg);
+  text-wrap: balance;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  border: solid 2px black;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
 }
 
 .descriptionText {
-  font-size: 2rem;
-  font-weight: bold;
-  color: whitesmoke;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.2vw + 0.9rem, 1.5rem);
+  color: var(--text-subtle);
+  max-width: 65ch;
+  text-wrap: pretty;
+}
+
+/* Numbers */
+.numberContainer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  min-width: 350px;
+  margin-left: var(--space-4);
+  margin-right: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .number {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: white;
+  font-size: clamp(1.5rem, 1.8vw + 1rem, 2.25rem);
+  font-weight: 800;
+
+  color: var(--text-on-bg);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: saturate(140%) blur(2px);
+  -webkit-backdrop-filter: saturate(140%) blur(2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) inset, 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.numberContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-width: 250px;
-}
-
+/* Buttons */
 .btn {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 12px 28px;
-  margin: 12px 28px;
-  border: none;
-  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5ch;
+  padding: 0.9rem 1.75rem;
+  margin: var(--space-3);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  color: #fff;
+  background: linear-gradient(135deg, var(--btn-grad-start), var(--btn-grad-end));
+  box-shadow: 0 8px 24px var(--btn-shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+  text-decoration: none;
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
 }
 
 .btn:active {
   transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.btn[aria-disabled="true"],
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* Motion & small screens */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    padding: var(--space-5) var(--space-3);
+  }
+  .btn {
+    width: 100%;
+  }
 }
